@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Ti 🌻</title>
+    <!-- Importamos Fredoka y la nueva y elegante Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Pantalla de Carga (Loading Screen) -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h2 class="to-from">
+    De: <span id="nombre-de">Alguien especial</span><br>
+    Para: <span id="nombre-para">Ti</span>
+</h2>
+            <p id="loading-text-1" class="loading-text">Buscando la estrella más bonita del universo...</p>
+            <p id="loading-text-2" class="loading-text hidden-text">...y creo firmemente que la encontré. Eres tú. ✨</p>
+        </div>
+    </div>
+    <canvas id="galaxy-canvas"></canvas>
+    <canvas id="lines-canvas"></canvas>
+    <canvas id="comet-canvas"></canvas>
+    
+    <!-- Reemplaza solo la sección del contenedor de estrellas violetas -->
+<div id="super-stars-container">
+    <!-- Esquina superior izquierda (Parpadeo rápido) -->
+    <div class="super-star" style="top: 12%; left: 8%; animation-delay: 0s; animation-duration: 3s;"></div>
+    
+    <!-- Centro derecha (Desfasada) -->
+    <div class="super-star" style="top: 45%; left: 88%; animation-delay: 1.2s; animation-duration: 4.5s;"></div>
+    
+    <!-- Abajo izquierda (Lenta) -->
+    <div class="super-star" style="top: 80%; left: 15%; animation-delay: 2.5s; animation-duration: 6s;"></div>
+    
+    <!-- Abajo derecha (Media) -->
+    <div class="super-star" style="top: 75%; left: 75%; animation-delay: 0.8s; animation-duration: 4s;"></div>
+    
+    <!-- Arriba medio derecha (Muy lenta) -->
+    <div class="super-star" style="top: 20%; left: 65%; animation-delay: 3.5s; animation-duration: 7s;"></div>
+
+    <div class="super-star" style="top: 49%; left: 27%; animation-delay: 2.5s; animation-duration: 6s;"></div>
+</div>
+    <div id="flowers-container"></div>
+
+    <div id="flower-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h1 id="modal-title">¡Te Amo!</h1>
+            <div class="big-sunflower" id="modal-icon">🌻</div>
+            <p id="modal-phrase" class="phrase">Eres la luz de mi vida</p>
+            
+            <div id="music-player" class="hidden">
+                <p class="song-title">Feliz 21 de septiembre 💖</p>
+                <audio id="love-song" controls>
+    <source id="audio-source" src="" type="audio/mpeg">
+</audio>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
