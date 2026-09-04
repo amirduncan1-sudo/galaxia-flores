@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     const urlParams = new URLSearchParams(window.location.search);
     const nombreDe = urlParams.get('de') || 'Amir';
     const nombrePara = urlParams.get('para') || 'mi persona favorita';
     const trackName = urlParams.get('track') || 'nuestra_cancion.mp3';
+    
+    // --- NUEVO: Limpiar la URL visualmente ---
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    // ... (sigue el resto de tu código)
     // Inyectamos los nombres en el HTML
     document.getElementById('nombre-de').textContent = nombreDe;
     document.getElementById('nombre-para').textContent = nombrePara;
