@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. TEXTOS Y FLORES ---
     const flowerData = [
-{ type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "I_Wanna_Be_Yours.mp3"},   
         { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3"},
         { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "Anna_Carina_Amandote.mp3"},
         { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Anna_Carina_Amandote.mp3"},
