@@ -3,19 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const nombreDe = urlParams.get('de') || 'Amir';
     const nombrePara = urlParams.get('para') || 'mi persona favorita';
-    const trackName = urlParams.get('track') || 'nuestra_cancion.mp3';
+    const trackName = urlParams.get('track') || 'Anna_Carina_Amandote.mp3#t=30,45';
     
-    // --- NUEVO: Limpiar la URL visualmente ---
+    // --- Limpiar la URL visualmente ---
     window.history.replaceState({}, document.title, window.location.pathname);
 
-    // ... (sigue el resto de tu código)
     // Inyectamos los nombres en el HTML
     document.getElementById('nombre-de').textContent = nombreDe;
     document.getElementById('nombre-para').textContent = nombrePara;
-  
-    const audioEl = document.getElementById('love-song');
 
-    audioEl.load()
     const flowersContainer = document.getElementById('flowers-container');
     const modal = document.getElementById('flower-modal');
     const closeBtn = document.querySelector('.close-btn');
@@ -27,132 +23,114 @@ document.addEventListener('DOMContentLoaded', () => {
     const galaxyCanvas = document.getElementById('galaxy-canvas');
     const gCtx = galaxyCanvas.getContext('2d');
     
-    // Reemplaza SOLO la función drawGalaxy() dentro de tu script.js
+    function drawGalaxy() {
+        galaxyCanvas.width = window.innerWidth;
+        galaxyCanvas.height = window.innerHeight;
+        gCtx.clearRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
+        
+        const cx = galaxyCanvas.width / 2;
+        const cy = galaxyCanvas.height / 2;
+        
+        // Núcleo
+        let coreGradient = gCtx.createRadialGradient(cx, cy, 0, cx, cy, galaxyCanvas.width * 0.3);
+        coreGradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)'); 
+        coreGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.03)');
+        coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        gCtx.fillStyle = coreGradient;
+        gCtx.fillRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
 
-// Reemplaza SOLO esta función dentro de tu script.js
+        // Galaxia principal 
+        for (let i = 0; i < 4000; i++) {
+            let r = Math.abs(Math.random() - Math.random()) * (galaxyCanvas.width > 600 ? 450 : 300); 
+            let angle = Math.random() * Math.PI * 2;
+            let x = r * Math.cos(angle);
+            let y = r * Math.sin(angle) * 0.35; 
 
-// Reemplaza SOLO esta función dentro de tu script.js
+            let rot = 35 * Math.PI / 180;
+            let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
+            let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
 
-// Reemplaza SOLO esta función dentro de tu script.js
+            let zDepth = y / (r * 0.35 + 1); 
+            let depthMultiplier = 1 + (zDepth * 0.3);
 
-// Reemplaza SOLO esta función dentro de tu script.js
+            let size = Math.random() * 1.5 * depthMultiplier;
+            let opacity = (Math.random() * 0.7 + 0.1) * depthMultiplier;
 
-function drawGalaxy() {
-    const galaxyCanvas = document.getElementById('galaxy-canvas');
-    const gCtx = galaxyCanvas.getContext('2d');
-    
-    galaxyCanvas.width = window.innerWidth;
-    galaxyCanvas.height = window.innerHeight;
-    gCtx.clearRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
-    
-    const cx = galaxyCanvas.width / 2;
-    const cy = galaxyCanvas.height / 2;
-    
-    // 1. Núcleo de la galaxia (Blanco y sutil)
-    let coreGradient = gCtx.createRadialGradient(cx, cy, 0, cx, cy, galaxyCanvas.width * 0.3);
-    coreGradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)'); 
-    coreGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.03)');
-    coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    gCtx.fillStyle = coreGradient;
-    gCtx.fillRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
+            gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            gCtx.beginPath();
+            gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
+            gCtx.fill();
+        }
 
-    // 2. Galaxia principal (Miles de puntos blancos)
-    for (let i = 0; i < 4000; i++) {
-        let r = Math.abs(Math.random() - Math.random()) * (galaxyCanvas.width > 600 ? 450 : 300); 
-        let angle = Math.random() * Math.PI * 2;
-        let x = r * Math.cos(angle);
-        let y = r * Math.sin(angle) * 0.35; 
+        // ANILLO AMARILLO INTERIOR
+        let baseRadius = galaxyCanvas.width > 600 ? 280 : 160; 
+        for (let i = 0; i < 1500; i++) {
+            let r = baseRadius + (Math.random() - 0.5) * (baseRadius * 0.3); 
+            let angle = Math.random() * Math.PI * 2;
+            let x = r * Math.cos(angle);
+            let y = r * Math.sin(angle) * 0.35;
 
-        let rot = 35 * Math.PI / 180;
-        let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
-        let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
+            let rot = 35 * Math.PI / 180;
+            let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
+            let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
 
-        // Simulador de profundidad (Z-Index falso)
-        let zDepth = y / (r * 0.35 + 1); 
-        let depthMultiplier = 1 + (zDepth * 0.3);
+            let zDepth = y / (baseRadius * 0.35); 
+            let depthMultiplier = 1 + (zDepth * 0.4); 
 
-        let size = Math.random() * 1.5 * depthMultiplier;
-        let opacity = (Math.random() * 0.7 + 0.1) * depthMultiplier;
+            let size = (Math.random() * 1.8 + 0.5) * depthMultiplier; 
+            let opacity = (Math.random() * 0.7 + 0.2) * depthMultiplier;
 
-        gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        gCtx.beginPath();
-        gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
-        gCtx.fill();
+            let rColor = 255;
+            let gColor = 190 + Math.random() * 65; 
+            let bColor = Math.random() * 80;
+
+            gCtx.fillStyle = `rgba(${rColor}, ${gColor}, ${bColor}, ${opacity})`;
+            gCtx.beginPath();
+            gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
+            gCtx.fill();
+        }
+
+        // ANILLO BLANCO EXTERIOR 
+        let outerRadius = baseRadius * 1.85; 
+        for (let i = 0; i < 1200; i++) {
+            let r = outerRadius + (Math.random() - 0.5) * (outerRadius * 0.15); 
+            let angle = Math.random() * Math.PI * 2;
+            let x = r * Math.cos(angle);
+            let y = r * Math.sin(angle) * 0.35; 
+
+            let rot = 35 * Math.PI / 180;
+            let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
+            let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
+
+            let zDepth = y / (outerRadius * 0.35); 
+            let depthMultiplier = 1 + (zDepth * 0.4);
+
+            let size = (Math.random() * 1.2) * depthMultiplier; 
+            let opacity = (Math.random() * 0.3 + 0.1) * depthMultiplier; 
+
+            gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            gCtx.beginPath();
+            gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
+            gCtx.fill();
+        }
+
+        // Estrellas de fondo 
+        for(let i = 0; i < 2000; i++) {
+            let opacity = Math.random() > 0.8 ? 0.6 : 0.15;
+            let size = Math.random() > 0.8 ? 1.2 : 0.5;
+            gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            gCtx.beginPath();
+            gCtx.arc(Math.random() * galaxyCanvas.width, Math.random() * galaxyCanvas.height, size, 0, Math.PI * 2);
+            gCtx.fill();
+        }
     }
 
-    // 3. EL ANILLO AMARILLO INTERIOR
-    let baseRadius = galaxyCanvas.width > 600 ? 280 : 160; 
-    
-    for (let i = 0; i < 1500; i++) {
-        let r = baseRadius + (Math.random() - 0.5) * (baseRadius * 0.3); 
-        let angle = Math.random() * Math.PI * 2;
-        let x = r * Math.cos(angle);
-        let y = r * Math.sin(angle) * 0.35;
-
-        let rot = 35 * Math.PI / 180;
-        let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
-        let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
-
-        // Profundidad para el anillo amarillo (Más brillante al frente)
-        let zDepth = y / (baseRadius * 0.35); 
-        let depthMultiplier = 1 + (zDepth * 0.4); 
-
-        let size = (Math.random() * 1.8 + 0.5) * depthMultiplier; 
-        let opacity = (Math.random() * 0.7 + 0.2) * depthMultiplier;
-
-        let rColor = 255;
-        let gColor = 190 + Math.random() * 65; 
-        let bColor = Math.random() * 80;
-
-        gCtx.fillStyle = `rgba(${rColor}, ${gColor}, ${bColor}, ${opacity})`;
-        gCtx.beginPath();
-        gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
-        gCtx.fill();
-    }
-
-    // 4. EL ANILLO BLANCO EXTERIOR (Ahora mucho más separado)
-    let outerRadius = baseRadius * 1.85; 
-    
-    for (let i = 0; i < 1200; i++) {
-        let r = outerRadius + (Math.random() - 0.5) * (outerRadius * 0.15); 
-        let angle = Math.random() * Math.PI * 2;
-        let x = r * Math.cos(angle);
-        let y = r * Math.sin(angle) * 0.35; 
-
-        let rot = 35 * Math.PI / 180;
-        let finalX = cx + (x * Math.cos(rot) - y * Math.sin(rot));
-        let finalY = cy + (x * Math.sin(rot) + y * Math.cos(rot));
-
-        // Profundidad para el anillo exterior
-        let zDepth = y / (outerRadius * 0.35); 
-        let depthMultiplier = 1 + (zDepth * 0.4);
-
-        let size = (Math.random() * 1.2) * depthMultiplier; 
-        let opacity = (Math.random() * 0.3 + 0.1) * depthMultiplier; 
-
-        gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        gCtx.beginPath();
-        gCtx.arc(finalX, finalY, size, 0, Math.PI * 2);
-        gCtx.fill();
-    }
-
-    // 5. Estrellas de fondo dispersas
-    for(let i = 0; i < 2000; i++) {
-        let opacity = Math.random() > 0.8 ? 0.6 : 0.15;
-        let size = Math.random() > 0.8 ? 1.2 : 0.5;
-        gCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        gCtx.beginPath();
-        gCtx.arc(Math.random() * galaxyCanvas.width, Math.random() * galaxyCanvas.height, size, 0, Math.PI * 2);
-        gCtx.fill();
-    }
-}
-
-    // --- 2. COMETA: RESOLUCIÓN FINA (Polvo estelar) ---
+    // --- 2. COMETA ---
     const cometCanvas = document.getElementById('comet-canvas');
     const cCtx = cometCanvas.getContext('2d');
     
     let cometDots = []; 
-    const totalCometDots = 1000; // Incrementado drásticamente para suavidad
+    let totalCometDots = 1000; 
     const cometDuration = 300000; 
     let cometStartTime = null;
 
@@ -181,7 +159,7 @@ function drawGalaxy() {
         let progress = (elapsed % cometDuration) / cometDuration;
         
         let headIndex = Math.floor(progress * totalCometDots);
-        let tailLength = 120; // Cola más larga y suave
+        let tailLength = 120; 
 
         cCtx.clearRect(0, 0, cometCanvas.width, cometCanvas.height);
 
@@ -195,14 +173,13 @@ function drawGalaxy() {
             
             let r, g, b;
             if (distanceToHead < 5) {
-                r = 0; g = 220; b = 255; // Punta Celeste vibrante
+                r = 0; g = 220; b = 255; 
             } else if (distanceToHead < 30) {
-                r = 255; g = 255; b = 200; // Transición blanca
+                r = 255; g = 255; b = 200; 
             } else {
-                r = 255; g = 215; b = 0; // Estela amarilla
+                r = 255; g = 215; b = 0; 
             }
 
-            // Tamaños mucho más pequeños para que parezca humo/polvo, no círculos toscos
             let size = distanceToHead === 0 ? 2 : Math.max(0.3, 1.2 - (distanceToHead/100));
 
             cCtx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
@@ -227,7 +204,7 @@ function drawGalaxy() {
     }
     window.addEventListener('resize', renderCanvases);
     
-    // --- 3. CONSTELACIONES, FLORES Y LÍNEAS ---
+    // --- 3. CONSTELACIONES Y LÍNEAS ---
     const constelaciones = [
         { top: 10, left: 15, scale: 0.9 }, { top: 18, left: 35, scale: 1.1 }, { top: 12, left: 55, scale: 0.8 }, { top: 20, left: 75, scale: 1.2 }, { top: 15, left: 90, scale: 0.7 },
         { top: 38, left: 10, scale: 1.0 }, { top: 45, left: 25, scale: 0.9 }, { top: 48, left: 40, scale: 0.8 }, { top: 58, left: 50, scale: 1.2 }, { top: 62, left: 68, scale: 0.9 }, { top: 52, left: 75, scale: 1.1 }, { top: 45, left: 60, scale: 1.3 },
@@ -260,7 +237,7 @@ function drawGalaxy() {
     }
 
     // --- 4. TEXTOS Y FLORES ---
-     const flowerData = [
+    const flowerData = [
         { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "Anna_Carina_Amandote.mp3#t=30,45" },
         { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
@@ -273,7 +250,7 @@ function drawGalaxy() {
         { type: 'phrase', text: "Aprecio cada pequeño momento y detalle que compartimos. 🕰️", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Conocerte fue el mejor regalo que me pudo dar la vida. 💙", icon: "🎁" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Mi corazón sonríe cada vez que pienso en ti. 😊", icon: "💓" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" , track:"Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Me haces sentir que todo es posible. ✨", icon: "💫" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Amo la forma en que ves el mundo y cómo me haces parte de él. 🌎", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "No hay momento ordinario si estoy a tu lado. 🌟", icon: "🌼" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
@@ -284,7 +261,21 @@ function drawGalaxy() {
         { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" , track: "Anna_Carina_Amandote.mp3#t=30,45"}
     ];
 
-    flowerData.sort(() => Math.random() - 0.5);
+    // Comentamos la mezcla para poder probar fácilmente
+    // flowerData.sort(() => Math.random() - 0.5);
+
+    function abrirModal(data) {
+        modalPhrase.textContent = data.text;
+        modalIcon.innerHTML = data.icon; 
+        
+        const audioEl = document.getElementById('love-song');
+        audioEl.src = data.track;
+        audioEl.load(); 
+        audioEl.play().catch(e => console.log("Esperando interacción para reproducir..."));
+        
+        musicPlayer.classList.remove('hidden'); 
+        modal.classList.remove('hidden');
+    }
 
     constelaciones.forEach((pos, index) => {
         let flower = document.createElement('div');
@@ -300,89 +291,69 @@ function drawGalaxy() {
         flowersContainer.appendChild(flower);
     });
 
-  function abrirModal(data) {
-        modalPhrase.textContent = data.text;
-        modalIcon.innerHTML = data.icon; 
-        
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
         const audioEl = document.getElementById('love-song');
-        
-        audioEl.src = data.track;
-        audioEl.load(); 
-        audioEl.play().catch(e => console.log("Esperando interacción..."));
-        
-        const musicPlayer = document.getElementById('music-player');
-        musicPlayer.classList.remove('hidden'); 
-        modal.classList.remove('hidden');
-    }
-
-    closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        audioEl.pause(); // Pausamos al cerrar
+    });
+    
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.add('hidden');
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+            const audioEl = document.getElementById('love-song');
+            audioEl.pause(); // Pausamos al cerrar
+        }
     });
 
     // Iniciar todo
     renderCanvases();
     requestAnimationFrame(animateComet);
 
-    // --- 1. PANTALLA DE CARGA ---
+    // --- 5. PANTALLA DE CARGA ---
     const loadingScreen = document.getElementById('loading-screen');
     const text2 = document.getElementById('loading-text-2');
     
-    // Secuencia de tiempos (Timeouts)
-    setTimeout(() => { text2.classList.remove('hidden-text'); }, 3000); // Aparece la segunda frase
+    setTimeout(() => { text2.classList.remove('hidden-text'); }, 3000); 
     setTimeout(() => { 
         loadingScreen.style.opacity = '0';
         loadingScreen.style.visibility = 'hidden'; 
-    }, 7000); // A los 7 segundos se desvanece todo y muestra la galaxia
+    }, 7000); 
 
-    // --- 2. EFECTO PARALLAX (Giroscopio) ---
-    const gCanvas = document.getElementById('galaxy-canvas');
+    // --- 6. EFECTO PARALLAX (Giroscopio) ---
     const fContainer = document.getElementById('flowers-container');
-    const cCanvas = document.getElementById('comet-canvas');
-    const lCanvas = document.getElementById('lines-canvas');
-
     window.addEventListener('deviceorientation', (e) => {
-        // Limitamos los grados para que no se salga de la pantalla
-        let x = Math.min(Math.max(e.gamma, -30), 30); // Izquierda/Derecha
-        let y = Math.min(Math.max(e.beta - 45, -30), 30); // Arriba/Abajo (Asume celular inclinado 45°)
+        let x = Math.min(Math.max(e.gamma, -30), 30); 
+        let y = Math.min(Math.max(e.beta - 45, -30), 30); 
 
-        // Movemos el fondo poco, y las flores mucho (Efecto 3D Real)
-        gCanvas.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
-        cCanvas.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
-        lCanvas.style.transform = `translate(${x * 0.8}px, ${y * 0.8}px)`;
+        galaxyCanvas.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+        cometCanvas.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+        linesCanvas.style.transform = `translate(${x * 0.8}px, ${y * 0.8}px)`;
         fContainer.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
     });
 
-    // --- 3. EASTER EGG (Recompensa Final) ---
-    // Creamos el contenedor del mensaje final
+    // --- 7. EASTER EGG (Recompensa Final) ---
     let easterMsg = document.createElement('div');
     easterMsg.id = 'easter-egg-message';
     easterMsg.innerHTML = '¡Has descubierto todo mi universo! ✨<br>Te amo.';
     document.body.appendChild(easterMsg);
 
-    // Set para no contar la misma flor dos veces
     let floresDescubiertas = new Set(); 
     
-    // Seleccionamos todas las flores creadas
     const todasLasFlores = document.querySelectorAll('.galaxy-flower');
     todasLasFlores.forEach((flor, index) => {
         flor.addEventListener('click', () => {
             floresDescubiertas.add(index);
             
-            // Si descubrió las 21 flores... ¡Sorpresa!
             if (floresDescubiertas.size === constelaciones.length) {
                 setTimeout(() => {
                     document.getElementById('flower-modal').classList.add('hidden');
                     easterMsg.style.opacity = '1';
                     
-                    // Lluvia masiva de estrellas (Agregamos más puntos al cometa temporalmente)
                     totalCometDots = 5000;
                     initCometPath();
-                }, 2000); // 2 segundos después de abrir la última flor
+                }, 2000); 
             }
         });
     });
-}
 
-
-);
+});
