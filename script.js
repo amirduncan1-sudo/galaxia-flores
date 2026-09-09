@@ -238,19 +238,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. TEXTOS Y FLORES ---
     const flowerData = [
-        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "Anna_Carina_Amandote.mp3#t=30,45" },
-        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres muy importante para mí, más de lo que las palabras pueden expresar. ❤️", icon: "🌷" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Gracias por tu paciencia infinita, tu amor y tu luz. 💖", icon: "🌸" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Aprecio cada pequeño momento y detalle que compartimos. 🕰️", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Conocerte fue el mejor regalo que me pudo dar la vida. 💙", icon: "🎁" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Mi corazón sonríe cada vez que pienso en ti. 😊", icon: "💓" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "Anna_Carina_Amandote.mp3" },
+        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Eres muy importante para mí, más de lo que las palabras pueden expresar. ❤️", icon: "🌷" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Gracias por tu paciencia infinita, tu amor y tu luz. 💖", icon: "🌸" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Aprecio cada pequeño momento y detalle que compartimos. 🕰️", icon: "🌻" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Conocerte fue el mejor regalo que me pudo dar la vida. 💙", icon: "🎁" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Mi corazón sonríe cada vez que pienso en ti. 😊", icon: "💓" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" , track: "Anna_Carina_Amandote.mp3"},
         { type: 'phrase', text: "Me haces sentir que todo es posible. ✨", icon: "💫" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Amo la forma en que ves el mundo y cómo me haces parte de él. 🌎", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "No hay momento ordinario si estoy a tu lado. 🌟", icon: "🌼" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
@@ -264,17 +264,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Comentamos la mezcla para poder probar fácilmente
     // flowerData.sort(() => Math.random() - 0.5);
 
-    function abrirModal(data) {
+   function abrirModal(data) {
         modalPhrase.textContent = data.text;
         modalIcon.innerHTML = data.icon; 
         
         const audioEl = document.getElementById('love-song');
-        audioEl.src = data.track;
-        audioEl.load(); 
-        audioEl.play().catch(e => console.log("Esperando interacción para reproducir..."));
         
+        // Asignamos la ruta directa (sin hacer .load() para no interrumpir al celular)
+        audioEl.src = data.track;
+        
+        // Mostramos el reproductor y el modal
         musicPlayer.classList.remove('hidden'); 
         modal.classList.remove('hidden');
+
+        // Le damos play. Si el celular lo bloquea automáticamente, el usuario podrá darle Play al botón sin que marque 0:00
+        audioEl.play().catch(e => console.log("El navegador pide que el usuario le de Play manualmente."));
     }
 
     constelaciones.forEach((pos, index) => {
