@@ -300,21 +300,18 @@ function drawGalaxy() {
         flowersContainer.appendChild(flower);
     });
 
-   function abrirModal(data) {
+  function abrirModal(data) {
         modalPhrase.textContent = data.text;
         modalIcon.innerHTML = data.icon; 
         
-        // 1. Seleccionamos el reproductor y su fuente
-        const audioSource = document.getElementById('audio-source');
         const audioEl = document.getElementById('love-song');
         
-        // 2. Le asignamos la canción específica de esta flor
-        audioSource.src = data.track;
-        audioEl.load(); // Es vital recargar para que lea el nuevo archivo
-        audioEl.play().catch(e => console.log("Esperando interacción para reproducir"));
-        // 3. Mostramos siempre el reproductor
-        musicPlayer.classList.remove('hidden'); 
+        audioEl.src = data.track;
+        audioEl.load(); 
+        audioEl.play().catch(e => console.log("Esperando interacción..."));
         
+        const musicPlayer = document.getElementById('music-player');
+        musicPlayer.classList.remove('hidden'); 
         modal.classList.remove('hidden');
     }
 
