@@ -260,28 +260,28 @@ function drawGalaxy() {
     }
 
     // --- 4. TEXTOS Y FLORES ---
-    const flowerData = [
-        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" },
-        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" },
-        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" },
-        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" },
-        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" },
-        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" },
-        { type: 'phrase', text: "Te amo muchísimo más de lo que las palabras pueden expresar. ❤️", icon: "🌷" },
-        { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" },
-        { type: 'phrase', text: "Gracias por tu paciencia infinita, tu amor y tu luz. 💖", icon: "🌸" },
-        { type: 'phrase', text: "Aprecio cada pequeño momento y detalle que compartimos. 🕰️", icon: "🌻" },
-        { type: 'phrase', text: "Conocerte fue el mejor regalo que me pudo dar la vida. 💙", icon: "🎁" },
-        { type: 'phrase', text: "Mi corazón sonríe cada vez que pienso en ti. 😊", icon: "💓" },
-        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" },
-        { type: 'phrase', text: "Me haces sentir que todo es posible. ✨", icon: "💫" },
-        { type: 'phrase', text: "Amo la forma en que ves el mundo y cómo me haces parte de él. 🌎", icon: "🌻" },
-        { type: 'phrase', text: "No hay momento ordinario si estoy a tu lado. 🌟", icon: "🌼" },
-        { type: 'phrase', text: "Llegaste a mi vida para llenarla de colores que no conocía. 🎨", icon: "🌺" },
-        { type: 'phrase', text: "Cada día encuentro una nueva razón para amarte más. 💖", icon: "🥰" },
-        { type: 'phrase', text: "Tu risa es la melodía que siempre quiero escuchar. 🎵", icon: "💐" },
-        { type: 'phrase', text: "Contigo, hasta el infinito y más allá. 🌌", icon: "💙" },
-        { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" }
+     const flowerData = [
+        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "cancion1.mp3#t=30,45" },
+        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres muy importante para mí, más de lo que las palabras pueden expresar. ❤️", icon: "🌷" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Gracias por tu paciencia infinita, tu amor y tu luz. 💖", icon: "🌸" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Aprecio cada pequeño momento y detalle que compartimos. 🕰️", icon: "🌻" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Conocerte fue el mejor regalo que me pudo dar la vida. 💙", icon: "🎁" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Mi corazón sonríe cada vez que pienso en ti. 😊", icon: "💓" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres mi lugar seguro y mi aventura más grande. 🚀", icon: "🌠" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Me haces sentir que todo es posible. ✨", icon: "💫" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Amo la forma en que ves el mundo y cómo me haces parte de él. 🌎", icon: "🌻" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "No hay momento ordinario si estoy a tu lado. 🌟", icon: "🌼" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Llegaste a mi vida para llenarla de colores que no conocía. 🎨", icon: "🌺" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Cada día encuentro una nueva razón para amarte más. 💖", icon: "🥰" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Tu risa es la melodía que siempre quiero escuchar. 🎵", icon: "💐" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Contigo, hasta el infinito y más allá. 🌌", icon: "💙" , track: "cancion1.mp3#t=30,45"},
+        { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" , track: "cancion1.mp3#t=30,45"}
     ];
 
     flowerData.sort(() => Math.random() - 0.5);
@@ -300,15 +300,21 @@ function drawGalaxy() {
         flowersContainer.appendChild(flower);
     });
 
-    function abrirModal(data) {
+   function abrirModal(data) {
         modalPhrase.textContent = data.text;
         modalIcon.innerHTML = data.icon; 
-        if (data.type === 'song') {
-            musicPlayer.classList.remove('hidden');
-        } else {
-            musicPlayer.classList.add('hidden');
-            audioEl.pause(); 
-        }
+        
+        // 1. Seleccionamos el reproductor y su fuente
+        const audioSource = document.getElementById('audio-source');
+        const audioEl = document.getElementById('love-song');
+        
+        // 2. Le asignamos la canción específica de esta flor
+        audioSource.src = data.track;
+        audioEl.load(); // Es vital recargar para que lea el nuevo archivo
+        
+        // 3. Mostramos siempre el reproductor
+        musicPlayer.classList.remove('hidden'); 
+        
         modal.classList.remove('hidden');
     }
 
