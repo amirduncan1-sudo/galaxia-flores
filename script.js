@@ -311,7 +311,7 @@ function drawGalaxy() {
         // 2. Le asignamos la canción específica de esta flor
         audioSource.src = data.track;
         audioEl.load(); // Es vital recargar para que lea el nuevo archivo
-        
+        audioEl.play().catch(e => console.log("Esperando interacción para reproducir"));
         // 3. Mostramos siempre el reproductor
         musicPlayer.classList.remove('hidden'); 
         
