@@ -262,11 +262,11 @@ function drawGalaxy() {
     // --- 4. TEXTOS Y FLORES ---
      const flowerData = [
         { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "Anna_Carina_Amandote.mp3#t=30,45" },
-        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "cancion1.mp3#t=30,45"},
-        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "cancion1.mp3#t=30,45"},
-        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "cancion1.mp3#t=30,45"},
-        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "cancion1.mp3#t=30,45"},
-        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "cancion1.mp3#t=30,45"},
+        { type: 'phrase', text: "Cada día a tu lado es una nueva y hermosa aventura. ✨", icon: "💐" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
+        { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "Anna_Carina_Amandote.mp3#t=30,45"},
         { type: 'phrase', text: "Eres muy importante para mí, más de lo que las palabras pueden expresar. ❤️", icon: "🌷" , track: "cancion1.mp3#t=30,45"},
         { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" , track: "cancion1.mp3#t=30,45"},
         { type: 'phrase', text: "Gracias por tu paciencia infinita, tu amor y tu luz. 💖", icon: "🌸" , track: "cancion1.mp3#t=30,45"},
