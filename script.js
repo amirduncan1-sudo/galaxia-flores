@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inyectamos los nombres en el HTML
     document.getElementById('nombre-de').textContent = nombreDe;
     document.getElementById('nombre-para').textContent = nombrePara;
-    const audioSource = document.getElementById('audio-source');
+  
     const audioEl = document.getElementById('love-song');
-    audioSource.src = trackName;
+
     audioEl.load()
     const flowersContainer = document.getElementById('flowers-container');
     const modal = document.getElementById('flower-modal');
