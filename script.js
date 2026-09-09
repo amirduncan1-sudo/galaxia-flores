@@ -238,10 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. TEXTOS Y FLORES ---
     const flowerData = [
-        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "I_Wanna_Be_Yours.mp3#t=32,59"},   
-        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Gracias por ser mi refugio y mi paz todos los días. 💛", icon: "🌼" ,track: "I_Wanna_Be_Yours.mp3#t=32,75"},   
+        { type: 'phrase', text: "Eres, sin duda, mi coincidencia favorita. 🥰", icon: "🌻" , track: "Pink_Just_Give_Me.mp3"},
         { type: 'phrase', text: "Admiro lo maravillosa, fuerte e increíble que eres. 🌟", icon: "🏵️" , track: "Anna_Carina_Amandote.mp3"},
-        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Anna_Carina_Amandote.mp3"},
+        { type: 'phrase', text: "Tu sonrisa tiene el poder de iluminar todo mi universo. 🌌", icon: "✨" , track: "Luis_Fonsi_Llegaste_Tu_.mp3"},
         { type: 'phrase', text: "Haces que mi mundo sea un lugar infinitamente mejor. 🌻", icon: "💛" , track: "Anna_Carina_Amandote.mp3"},
         { type: 'phrase', text: "Eres muy importante para mí, más de lo que las palabras pueden expresar. ❤️", icon: "🌷" , track: "Anna_Carina_Amandote.mp3"},
         { type: 'phrase', text: "Eres mi persona favorita en todo el mundo entero. 👫", icon: "🌺" , track: "Anna_Carina_Amandote.mp3"},
