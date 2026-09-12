@@ -312,15 +312,37 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCanvases();
     requestAnimationFrame(animateComet);
 
-    // --- 5. PANTALLA DE CARGA ---
-    const loadingScreen = document.getElementById('loading-screen');
-    const text2 = document.getElementById('loading-text-2');
+// --- 5. PANTALLA DE CARGA + MÚSICA DE FONDO ---
+const loadingScreen = document.getElementById('loading-screen');
+const text2 = document.getElementById('loading-text-2');
+const backgroundMusic = document.getElementById('background-music');
+
+// La canción se repite automáticamente
+backgroundMusic.loop = true;
+
+// Intentamos iniciar la música automáticamente
+backgroundMusic.play().catch(() => {
+    console.log("El navegador espera una interacción del usuario para reproducir la música.");
+});
+
+// Si el navegador bloqueó el autoplay,
+// el primer clic del usuario iniciará la música.
+document.addEventListener('click', () => {
+    backgroundMusic.play().catch(() => {});
+}, { once: true });
+
+// Texto de la pantalla de carga
+setTimeout(() => { 
+    text2.classList.remove('hidden-text'); 
+}, 3000);
+
+// Desaparecer pantalla de carga
+setTimeout(() => { 
+    loadingScreen.style.opacity = '0';
+    loadingScreen.style.visibility = 'hidden'; 
+}, 7000);
+
     
-    setTimeout(() => { text2.classList.remove('hidden-text'); }, 3000); 
-    setTimeout(() => { 
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden'; 
-    }, 7000); 
 
     // --- 6. EFECTO PARALLAX (Giroscopio) ---
     const fContainer = document.getElementById('flowers-container');
