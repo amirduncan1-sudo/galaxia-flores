@@ -356,6 +356,38 @@ document.addEventListener('DOMContentLoaded', () => {
                     initCometPath();
                 }, 2000); 
             }
+
+
+            // ===============================
+// MÚSICA DE FONDO
+// ===============================
+
+const backgroundMusic = document.getElementById("background-music");
+const loadingScreen = document.getElementById("loading-screen");
+
+backgroundMusic.loop = true;
+
+let musicStarted = false;
+
+function iniciarMusica() {
+    if (musicStarted) return;
+
+    backgroundMusic.play()
+        .then(() => {
+            musicStarted = true;
+            console.log("🎵 Música iniciada");
+        })
+        .catch(error => {
+            console.log("El navegador bloqueó el autoplay.");
+        });
+}
+
+// Primer clic dentro de la pantalla de carga
+loadingScreen.addEventListener("click", iniciarMusica);
+
+// Si la pantalla de carga desaparece,
+// cualquier primer clic en la página también inicia la música.
+document.addEventListener("click", iniciarMusica);
         });
     });
 
