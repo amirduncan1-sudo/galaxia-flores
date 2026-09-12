@@ -263,22 +263,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Comentamos la mezcla para poder probar fácilmente
     // flowerData.sort(() => Math.random() - 0.5);
 
-   function abrirModal(data) {
-        modalPhrase.textContent = data.text;
-        modalIcon.innerHTML = data.icon; 
+  function abrirModal(data) {
+    modalPhrase.textContent = data.text;
+    modalIcon.innerHTML = data.icon; 
         
-        const audioEl = document.getElementById('love-song');
-        
-        // Asignamos la ruta directa (sin hacer .load() para no interrumpir al celular)
-        audioEl.src = data.track;
-        
-        // Mostramos el reproductor y el modal
-        musicPlayer.classList.remove('hidden'); 
-        modal.classList.remove('hidden');
+    const audioEl = document.getElementById('love-song');
 
-        // Le damos play. Si el celular lo bloquea automáticamente, el usuario podrá darle Play al botón sin que marque 0:00
-        audioEl.play().catch(e => console.log("El navegador pide que el usuario le de Play manualmente."));
-    }
+    // Pausar música de fondo
+    backgroundMusic.pause();
+        
+    // Cargar canción de la flor
+    audioEl.src = data.track;
+    audioEl.currentTime = 0;
+        
+    // Mostrar modal
+    musicPlayer.classList.remove('hidden'); 
+    modal.classList.remove('hidden');
+
+    // Reproducir canción de la flor
+    audioEl.play().catch(e => {
+        console.log("El navegador pide que le den Play manualmente.");
+    });
+
+    // Cuando termine la canción, vuelve la música de fondo
+    audioEl.onended = () => {
+        backgroundMusic.play().catch(() => {});
+    };
+}
 
     constelaciones.forEach((pos, index) => {
         let flower = document.createElement('div');
@@ -294,19 +305,31 @@ document.addEventListener('DOMContentLoaded', () => {
         flowersContainer.appendChild(flower);
     });
 
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        const audioEl = document.getElementById('love-song');
-        audioEl.pause(); // Pausamos al cerrar
-    });
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+
+    const audioEl = document.getElementById('love-song');
+
+    // Pausar canción de la flor
+    audioEl.pause();
+
+    // Volver a la música de fondo
+    backgroundMusic.play().catch(() => {});
+});
     
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
-            const audioEl = document.getElementById('love-song');
-            audioEl.pause(); // Pausamos al cerrar
-        }
-    });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.add('hidden');
+
+        const audioEl = document.getElementById('love-song');
+
+        // Pausar canción de la flor
+        audioEl.pause();
+
+        // Volver a la música de fondo
+        backgroundMusic.play().catch(() => {});
+    }
+});
 
     // Iniciar todo
     renderCanvases();
