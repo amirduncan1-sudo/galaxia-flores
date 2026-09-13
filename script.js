@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const nombreDe = urlParams.get('de') || 'Amir';
-    const nombrePara = urlParams.get('para') || 'mi persona favorita';
+    const nombrePara = urlParams.get('para') || 'Bretzy';
     const trackName = urlParams.get('track') || 'Anna_Carina_Amandote.mp3#t=30,45';
     
     // --- Limpiar la URL visualmente ---
