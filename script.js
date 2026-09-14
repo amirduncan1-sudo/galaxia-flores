@@ -5,10 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombrePara = urlParams.get('para') || 'Bretzy';
     const trackName = urlParams.get('track') || 'Anna_Carina_Amandote.mp3#t=30,45';
     
-    // --- Limpiar la URL visualmente ---
     window.history.replaceState({}, document.title, window.location.pathname);
 
-    // Inyectamos los nombres en el HTML
     document.getElementById('nombre-de').textContent = nombreDe;
     document.getElementById('nombre-para').textContent = nombrePara;
 
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalIcon = document.getElementById('modal-icon');
     const musicPlayer = document.getElementById('music-player');
 
-    // --- 1. GALAXIA CON PROFUNDIDAD Y NÚCLEO ---
     const galaxyCanvas = document.getElementById('galaxy-canvas');
     const gCtx = galaxyCanvas.getContext('2d');
     
@@ -39,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gCtx.fillStyle = coreGradient;
         gCtx.fillRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
 
-        // Galaxia principal 
         for (let i = 0; i < 4000; i++) {
             let r = Math.abs(Math.random() - Math.random()) * (galaxyCanvas.width > 600 ? 450 : 300); 
             let angle = Math.random() * Math.PI * 2;
@@ -62,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gCtx.fill();
         }
 
-        // ANILLO AMARILLO INTERIOR
         let baseRadius = galaxyCanvas.width > 600 ? 280 : 160; 
         for (let i = 0; i < 1500; i++) {
             let r = baseRadius + (Math.random() - 0.5) * (baseRadius * 0.3); 
@@ -90,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gCtx.fill();
         }
 
-        // ANILLO BLANCO EXTERIOR 
         let outerRadius = baseRadius * 1.85; 
         for (let i = 0; i < 1200; i++) {
             let r = outerRadius + (Math.random() - 0.5) * (outerRadius * 0.15); 
@@ -114,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gCtx.fill();
         }
 
-        // Estrellas de fondo 
         for(let i = 0; i < 2000; i++) {
             let opacity = Math.random() > 0.8 ? 0.6 : 0.15;
             let size = Math.random() > 0.8 ? 1.2 : 0.5;
@@ -260,8 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" , track: "Anna_Carina_Amandote.mp3#t=10,99"}
     ];
 
-    // Comentamos la mezcla para poder probar fácilmente
-    // flowerData.sort(() => Math.random() - 0.5);
+
 
   function abrirModal(data) {
     modalPhrase.textContent = data.text;
@@ -269,23 +261,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
     const audioEl = document.getElementById('love-song');
 
-    // Pausar música de fondo
     backgroundMusic.pause();
         
-    // Cargar canción de la flor
     audioEl.src = data.track;
     audioEl.currentTime = 0;
         
-    // Mostrar modal
     musicPlayer.classList.remove('hidden'); 
     modal.classList.remove('hidden');
 
-    // Reproducir canción de la flor
     audioEl.play().catch(e => {
         console.log("El navegador pide que le den Play manualmente.");
     });
 
-    // Cuando termine la canción, vuelve la música de fondo
     audioEl.onended = () => {
         backgroundMusic.play().catch(() => {});
     };
@@ -310,10 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const audioEl = document.getElementById('love-song');
 
-    // Pausar canción de la flor
     audioEl.pause();
 
-    // Volver a la música de fondo
     backgroundMusic.play().catch(() => {});
 });
     
@@ -323,15 +308,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const audioEl = document.getElementById('love-song');
 
-        // Pausar canción de la flor
         audioEl.pause();
 
-        // Volver a la música de fondo
         backgroundMusic.play().catch(() => {});
     }
 });
 
-    // Iniciar todo
     renderCanvases();
     requestAnimationFrame(animateComet);
 
@@ -340,26 +322,21 @@ const loadingScreen = document.getElementById('loading-screen');
 const text2 = document.getElementById('loading-text-2');
 const backgroundMusic = document.getElementById('background-music');
 
-// La canción se repite automáticamente
 backgroundMusic.loop = true;
 
-// Intentamos iniciar la música automáticamente
 backgroundMusic.play().catch(() => {
     console.log("El navegador espera una interacción del usuario para reproducir la música.");
 });
 
-// Si el navegador bloqueó el autoplay,
-// el primer clic del usuario iniciará la música.
+
 document.addEventListener('click', () => {
     backgroundMusic.play().catch(() => {});
 }, { once: true });
 
-// Texto de la pantalla de carga
 setTimeout(() => { 
     text2.classList.remove('hidden-text'); 
 }, 3000);
 
-// Desaparecer pantalla de carga
 setTimeout(() => { 
     loadingScreen.style.opacity = '0';
     loadingScreen.style.visibility = 'hidden'; 
@@ -403,9 +380,8 @@ setTimeout(() => {
             }
 
 
-            // ===============================
 // MÚSICA DE FONDO
-// ===============================
+
 
 const backgroundMusic = document.getElementById("background-music");
 const loadingScreen = document.getElementById("loading-screen");
@@ -427,11 +403,9 @@ function iniciarMusica() {
         });
 }
 
-// Primer clic dentro de la pantalla de carga
 loadingScreen.addEventListener("click", iniciarMusica);
 
-// Si la pantalla de carga desaparece,
-// cualquier primer clic en la página también inicia la música.
+
 document.addEventListener("click", iniciarMusica);
         });
     });
