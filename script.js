@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'phrase', text: "No hay momento ordinario si estoy a tu lado. 🌟", icon: "🌼" , track: "Me_voy_enamorando.mp3#t=30,100"},
         { type: 'phrase', text: "Llegaste a mi vida para llenarla de colores que no conocía. 🎨", icon: "🌺" , track: "Pink_Just_Give_Me.mp3#t=10,65"},
         { type: 'phrase', text: "Cada día encuentro una nueva razón para amarte más. 💖", icon: "🥰" , track: "Pink_Just_Give_Me.mp3#t=10,105"},
-        { type: 'phrase', text: "Tu risa es la melodía que siempre quiero escuchar. 🎵", icon: "💐" , track: "R_U_Mine.mp3#t=10,134"},
+        { type: 'phrase', text: "Tu risa es la  mejor melodía. 🎵", icon: "💐" , track: "R_U_Mine.mp3#t=10,134"},
         { type: 'phrase', text: "Contigo, hasta el infinito y más allá. 🌌", icon: "💙" , track: "Theres_Nothing_Holdin_Me_Back.mp3#t=10,80"},
         { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" , track: "Anna_Carina_Amandote.mp3#t=10,99"}
     ];
@@ -283,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
         musicPlayer.classList.remove('hidden'); 
         modal.classList.remove('hidden');
 
-        // Al ejecutar play aquí, se disparará el evento 'play' que pausará la música de fondo automáticamente
         audioEl.play().catch(e => {
             console.log("El navegador pide que le den Play manualmente.");
         });
@@ -365,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 7. EASTER EGG (Recompensa Final) ---
     let easterMsg = document.createElement('div');
     easterMsg.id = 'easter-egg-message';
-    easterMsg.innerHTML = '¡Has descubierto todo mi universo! ✨<br>Te amo.';
+    easterMsg.innerHTML = '¡Has descubierto todo mi universo! ✨<br>Eres muy importante para mí.';
     document.body.appendChild(easterMsg);
 
     let floresDescubiertas = new Set(); 
@@ -383,7 +382,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalCometDots = 5000;
                     initCometPath();
                     
-                    // Pausar música de la flor si estaba sonando para disfrutar el final
                     audioEl.pause();
                 }, 2000); 
             }
