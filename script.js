@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const urlParams = new URLSearchParams(window.location.search);
     const nombreDe = urlParams.get('de') || 'Amir';
     const nombrePara = urlParams.get('para') || 'Bretzy';
@@ -10,16 +9,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nombre-de').textContent = nombreDe;
     document.getElementById('nombre-para').textContent = nombrePara;
 
+    // Referencias a los elementos del DOM
     const flowersContainer = document.getElementById('flowers-container');
     const modal = document.getElementById('flower-modal');
     const closeBtn = document.querySelector('.close-btn');
     const modalPhrase = document.getElementById('modal-phrase');
     const modalIcon = document.getElementById('modal-icon');
     const musicPlayer = document.getElementById('music-player');
+    const audioEl = document.getElementById('love-song');
+    const backgroundMusic = document.getElementById('background-music');
+    const loadingScreen = document.getElementById('loading-screen');
+    const text2 = document.getElementById('loading-text-2');
 
     const galaxyCanvas = document.getElementById('galaxy-canvas');
     const gCtx = galaxyCanvas.getContext('2d');
     
+    // --- NUEVO: Control exacto de la música ---
+    // Si la música de la flor empieza a sonar, pausamos la de fondo
+    audioEl.addEventListener('play', () => {
+        backgroundMusic.pause();
+    });
+
+    // Si la música de la flor se pausa o termina, reanudamos la de fondo
+    audioEl.addEventListener('pause', () => {
+        backgroundMusic.play().catch(() => {});
+    });
+    
+    audioEl.addEventListener('ended', () => {
+        backgroundMusic.play().catch(() => {});
+    });
+
+    // --- 1. GALAXIA ---
     function drawGalaxy() {
         galaxyCanvas.width = window.innerWidth;
         galaxyCanvas.height = window.innerHeight;
@@ -253,30 +273,21 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'song', text: "¡Encontraste la flor especial! 🎶 Disfruta nuestra canción.", icon: "🎧💛" , track: "Anna_Carina_Amandote.mp3#t=10,99"}
     ];
 
-
-
-  function abrirModal(data) {
-    modalPhrase.textContent = data.text;
-    modalIcon.innerHTML = data.icon; 
+    function abrirModal(data) {
+        modalPhrase.textContent = data.text;
+        modalIcon.innerHTML = data.icon; 
         
-    const audioEl = document.getElementById('love-song');
-
-    backgroundMusic.pause();
+        audioEl.src = data.track;
+        audioEl.currentTime = 0;
         
-    audioEl.src = data.track;
-    audioEl.currentTime = 0;
-        
-    musicPlayer.classList.remove('hidden'); 
-    modal.classList.remove('hidden');
+        musicPlayer.classList.remove('hidden'); 
+        modal.classList.remove('hidden');
 
-    audioEl.play().catch(e => {
-        console.log("El navegador pide que le den Play manualmente.");
-    });
-
-    audioEl.onended = () => {
-        backgroundMusic.play().catch(() => {});
-    };
-}
+        // Al ejecutar play aquí, se disparará el evento 'play' que pausará la música de fondo automáticamente
+        audioEl.play().catch(e => {
+            console.log("El navegador pide que le den Play manualmente.");
+        });
+    }
 
     constelaciones.forEach((pos, index) => {
         let flower = document.createElement('div');
@@ -292,57 +303,52 @@ document.addEventListener('DOMContentLoaded', () => {
         flowersContainer.appendChild(flower);
     });
 
-  closeBtn.addEventListener('click', () => {
-    modal.classList.add('hidden');
-
-    const audioEl = document.getElementById('love-song');
-
-    audioEl.pause();
-
-    backgroundMusic.play().catch(() => {});
-});
-    
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    // Cerrar modal
+    closeBtn.addEventListener('click', () => {
         modal.classList.add('hidden');
-
-        const audioEl = document.getElementById('love-song');
-
+        // Al pausar aquí, se dispara el evento 'pause' que reanudará la música de fondo
         audioEl.pause();
-
-        backgroundMusic.play().catch(() => {});
-    }
-});
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+            audioEl.pause();
+        }
+    });
 
     renderCanvases();
     requestAnimationFrame(animateComet);
 
-// --- 5. PANTALLA DE CARGA + MÚSICA DE FONDO ---
-const loadingScreen = document.getElementById('loading-screen');
-const text2 = document.getElementById('loading-text-2');
-const backgroundMusic = document.getElementById('background-music');
+    // --- 5. PANTALLA DE CARGA + MÚSICA DE FONDO ---
+    backgroundMusic.loop = true;
+    let musicStarted = false;
 
-backgroundMusic.loop = true;
+    function iniciarMusicaFondo() {
+        if (musicStarted) return;
+        backgroundMusic.play().then(() => {
+            musicStarted = true;
+        }).catch(error => {
+            console.log("El navegador bloqueó el autoplay.");
+        });
+    }
 
-backgroundMusic.play().catch(() => {
-    console.log("El navegador espera una interacción del usuario para reproducir la música.");
-});
-
-
-document.addEventListener('click', () => {
-    backgroundMusic.play().catch(() => {});
-}, { once: true });
-
-setTimeout(() => { 
-    text2.classList.remove('hidden-text'); 
-}, 3000);
-
-setTimeout(() => { 
-    loadingScreen.style.opacity = '0';
-    loadingScreen.style.visibility = 'hidden'; 
-}, 7000);
-
+    // Intentar iniciar la música al cargar y al primer click
+    backgroundMusic.play().catch(() => {
+        console.log("El navegador espera una interacción del usuario.");
+    });
     
+    document.addEventListener('click', iniciarMusicaFondo, { once: true });
+    loadingScreen.addEventListener("click", iniciarMusicaFondo);
+
+    setTimeout(() => { 
+        text2.classList.remove('hidden-text'); 
+    }, 3000);
+
+    setTimeout(() => { 
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.visibility = 'hidden'; 
+    }, 7000);
 
     // --- 6. EFECTO PARALLAX (Giroscopio) ---
     const fContainer = document.getElementById('flowers-container');
@@ -376,38 +382,11 @@ setTimeout(() => {
                     
                     totalCometDots = 5000;
                     initCometPath();
+                    
+                    // Pausar música de la flor si estaba sonando para disfrutar el final
+                    audioEl.pause();
                 }, 2000); 
             }
-
-
-// MÚSICA DE FONDO
-
-
-const backgroundMusic = document.getElementById("background-music");
-const loadingScreen = document.getElementById("loading-screen");
-
-backgroundMusic.loop = true;
-
-let musicStarted = false;
-
-function iniciarMusica() {
-    if (musicStarted) return;
-
-    backgroundMusic.play()
-        .then(() => {
-            musicStarted = true;
-            console.log("🎵 Música iniciada");
-        })
-        .catch(error => {
-            console.log("El navegador bloqueó el autoplay.");
-        });
-}
-
-loadingScreen.addEventListener("click", iniciarMusica);
-
-
-document.addEventListener("click", iniciarMusica);
         });
     });
-
 });
